@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Login')"></head>
+<body>
+<header th:replace="fragments/navbar :: navbar(false)"></header>
+
+<section class="hero">
+    <div class="card card-lg">
+        <h1 class="title">Welcome back</h1>
+        <p class="subtitle">Access your library account</p>
+
+        <div class="alert error" th:if="${error}" th:text="${error}"></div>
+
+        <form th:action="@{/login}" method="post" class="form-grid">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="••••••••" required>
+
+            <button class="btn btn-primary">Login</button>
+        </form>
+
+        <p class="muted">New here? <a th:href="@{/signup}">Create an account</a></p>
+    </div>
+</section>
+
+</body>
+</html>

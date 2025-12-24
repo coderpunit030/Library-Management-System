@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Attendance Calendar')"></head>
+<body>
+<header th:replace="fragments/navbar :: navbar(true)"></header>
+
+<section class="container">
+    <div class="card card-lg">
+        <h2 class="title">Attendance Calendar</h2>
+        <p class="subtitle">Days you visited the library</p>
+
+        <div class="calendar">
+            <ul>
+                <li th:each="record : ${attendanceRecords}">
+                    <span class="badge badge-success" th:text="${#temporals.format(record.date, 'dd MMM yyyy')}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Payment')"></head>
+<body>
+<header th:replace="fragments/navbar :: navbar(true)"></header>
+
+<section class="container">
+    <div class="card card-lg">
+        <h2 class="title">Complete your membership</h2>
+        <p class="subtitle">Secure payment to become an active member</p>
+
+        <div class="summary">
+            <p><strong>Name:</strong> <span th:text="${user.fullName}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Amount:</strong> ₹<span th:text="${600}"></span></p>
+        </div>
+
+        <!-- Simulated payment -->
+        <form th:action="@{/payment/submit}" method="post" class="form-grid">
+            <label>Card number</label>
+            <input type="text" placeholder="4111 1111 1111 1111" required>
+
+            <label>Expiry</label>
+            <input type="text" placeholder="MM/YY" required>
+
+            <label>CVV</label>
+            <input type="text" placeholder="123" required>
+
+            <button class="btn btn-primary">Pay now</button>
+        </form>
+
+        <p class="muted">Note: This is a demo payment. On submit, your membership becomes active.</p>
+    </div>
+</section>
+
+</body>
+</html>

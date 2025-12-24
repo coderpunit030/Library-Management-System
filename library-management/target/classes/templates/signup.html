@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Sign up')"></head>
+<body>
+<header th:replace="fragments/navbar :: navbar(false)"></header>
+
+<section class="hero">
+    <div class="card card-lg">
+        <h1 class="title">Create your account</h1>
+        <p class="subtitle">Start your 3-day free trial</p>
+
+        <div class="alert error" th:if="${error}" th:text="${error}"></div>
+
+        <form th:action="@{/signup}" method="post" class="form-grid">
+            <label>Full name</label>
+            <input type="text" name="fullName" placeholder="Your Name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="••••••••" required>
+
+            <button class="btn btn-primary">Sign up</button>
+        </form>
+
+        <p class="muted">Already a member? <a th:href="@{/login}">Login</a></p>
+    </div>
+</section>
+
+</body>
+</html>

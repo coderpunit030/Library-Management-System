@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Profile')"></head>
+<body>
+<header th:replace="fragments/navbar :: navbar(true)"></header>
+
+<section class="container">
+    <div class="card">
+        <h2 class="title">Profile</h2>
+
+        <div class="profile-grid">
+            <div>
+                <p><strong>Name:</strong> <span th:text="${user.fullName}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+                <p><strong>Joined:</strong> <span th:text="${#temporals.format(user.createdAt, 'dd MMM yyyy HH:mm')}"></span></p>
+            </div>
+            <div class="status">
+                <span th:if="${active}" class="badge badge-success">Active member</span>
+                <span th:if="${!active}" class="badge badge-danger">Not active</span>
+
+                <p class="muted" th:if="${!user.paid}">
+                    Trial days left: <strong th:text="${trialDaysLeft}"></strong>
+                </p>
+
+                <p class="muted" th:if="${user.paid}">
+                    Membership paid on <strong th:text="${#temporals.format(user.paidAt, 'dd MMM yyyy HH:mm')}"></strong>
+                </p>
+
+                <a th:href="@{/payment}" class="btn btn-primary" th:if="${!user.paid}">Pay membership fee</a>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="status">
+    <!-- existing membership status -->
+
+    <form th:action="@{/attendance/mark}" method="post">
+        <button class="btn btn-outline">Mark Today’s Attendance</button>
+    </form>
+
+    <a th:href="@{/attendance}" class="btn btn-primary">View Attendance Calendar</a>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="navbar(isLoggedIn)">
+<nav class="nav">
+    <div class="nav-left">
+        <span class="brand">LibManage</span>
+    </div>
+    <div class="nav-right">
+        <a th:href="@{/login}" th:if="${!isLoggedIn}" class="btn-link">Login</a>
+        <a th:href="@{/signup}" th:if="${!isLoggedIn}" class="btn-link">Sign up</a>
+        <form th:if="${isLoggedIn}" th:action="@{/logout}" method="post">
+            <button class="btn btn-outline">Logout</button>
+        </form>
+    </div>
+</nav>
+</body>
+</html>
